@@ -1,0 +1,28 @@
+{
+  "name": "nix-react-state-validate",
+  "version": "1.1.1",
+  "description": "Validation package for the state object in React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm i validator --save"
+  },
+  "keywords": [
+    "form",
+    "validation",
+    "error",
+    "handling",
+    "checking",
+    "react",
+    "state",
+    "material-ui",
+    "semantic-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nsinha91/nix-react-state-validate.git"
+  },
+  "author": "Nikhil Sinha",
+  "license": "ISC",
+  "dependencies": {}
+}
