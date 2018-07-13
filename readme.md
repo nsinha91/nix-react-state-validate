@@ -4,7 +4,9 @@ A validation package for the state object in React. It takes in your current sta
 
 This package is library-independent, i.e., it works with Material-UI, React-Bootstrap, Sematic UI and all other popular React libraries.
 
-*I made this package after trying to use several React packages for form validation. Most give you custom components, and I found that often these custom components are not properly compatible with the components of the front-end library you are using (e.g., Material UI). Therefore, nix-react-state-validate does not use a custom component. This package gives you an easy way to change the state based on errors, but does not append any element into the page. It is left to the user to show the errors using whatever compoenents he/she wants to use.*
+*I made this package after trying to use several React packages for form validation. Most give you custom components, and I found that often these custom components are not properly compatible with the components of the front-end library you are using (e.g., Material UI). Therefore, nix-react-state-validate does not use a custom component. This package gives you an easy way to change the state based on errors, but does not append any element into the page. It is left to the user to show the errors using whatever components he/she wants to use.*
+
+***Note:** For users who were using any of the versions 1.0.x, and then upgraded to 1.1.x, there are breaking changes. I recommend that you install the latest version and make changes to your code accordingly. Apologies for the inconvenience.*
 
 <br>
 
@@ -93,9 +95,13 @@ export default DetailForm;
 
 | Key               | Definition                        | Value         | Required |
 | ----------------- | --------------------------------- | ------------- | -------- |
-| validity          | A validator function that returns either true or false. You can choose to use any of the validators in [validator.js](https://github.com/chriso/validator.js). The latest validator.js library is installed along with nix-react-state-validate by default.<br><br>You can also use your own validator function if you want. | Boolean | Yes | 
+| validity          | A validator function that returns either true or false. You can choose to use any of the validators in [validator.js](https://github.com/chriso/validator.js). The latest validator.js library is installed along with nix-react-state-validate by default.<br><br>You can also use your own validator function if you want.<br><br>In case you're not passing a componentStateErrorItem, just insert a (validity) value of true. | Boolean | Yes | 
 | componentState | Current state of the component. | Object (this.state) | Yes |
 | componentStateSuccessItem | The address of the success key within the state object and its value (if it turns out to be a success). For example, let's say you want to validate 'city' in the following state object: <br><br><code>this.state = {<br>&nbsp;&nbsp;contactDetails: {<br>&nbsp;&nbsp;&nbsp;&nbsp;address: {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;city: '', <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;country: ''<br>&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;phone: {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;landline: '', <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mobile: ''<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;contactErrors: {<br>&nbsp;&nbsp;&nbsp;&nbsp;address: {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;city: '', <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;country: ''<br>&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;phone: {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;landline: '', <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mobile: ''<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>}</code><br><br>The componentStateSuccessItem will be an object that leads to the value of 'city' inside the state object, and will also contain the success value. <br><br><code>componentStateSuccessItem:{<br>&nbsp;&nbsp;contactDetails: {<br>&nbsp;&nbsp;&nbsp;&nbsp;address: {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;city: e.target.value<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>}</code><br><br>Note that in the componentStateSuccessItem, each nested object will contain only a single key. | Object | Yes |
-| componentStateErrorItem | The address of the error key within the state object and its value (if it turns out to be an error). The rest of the explanation is similar to ComponentStateSuccessItem above.| Object | Yes |
+| componentStateErrorItem | The address of the error key within the state object and its value (if it turns out to be an error). The rest of the explanation is similar to componentStateSuccessItem above.<br><br>In case you choose to not pass a componentStateErrorItem, nix-react-state-validate will show no errors and will behave just like the setState function.| Object | No |
 
 <br>
+
+## Feedback
+
+Is there something in form-validation that nix-react-state-validate could do for you but isn't doing? Feel free to let me know on nikhil.sinha1991@gmail.com. In case you can implement stuff yourself, feel free to make a PR on the git repo.

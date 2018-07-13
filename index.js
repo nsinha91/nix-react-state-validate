@@ -7,22 +7,30 @@ export default validator;
 export function nixCheckInput(checkerObject) {
 
 	const newState = checkerObject.componentState;		// Storing the current state in a variable
-	const componentStateErrorItem = checkerObject.componentStateErrorItem;
+	const componentStateErrorItem = (checkerObject.componentStateErrorItem) ? checkerObject.componentStateErrorItem : null;
 	const componentStateSuccessItem = checkerObject.componentStateSuccessItem;
 	let valid = checkerObject.validity;
 
+	
+	if(!componentStateErrorItem){
 
-	if(valid){
-		let transitState = insertValueInState(newState, componentStateSuccessItem, false);	// We have to save a transitState above as this step only inserts the success value into the state. It does not remove the error value from the state. That is done by the step below.
+		insertValueInState(newState, componentStateSuccessItem, false)
 
-		return insertValueInState(transitState, componentStateErrorItem, true);
 	}
 	else {
-		let transitState = insertValueInState(newState, componentStateErrorItem, false);
 
-		return insertValueInState(transitState, componentStateSuccessItem, true);
+		if(valid){
+			let transitState = insertValueInState(newState, componentStateSuccessItem, false);	// We have to save a transitState above as this step only inserts the success value into the state. It does not remove the error value from the state. That is done by the step below.
+
+			return insertValueInState(transitState, componentStateErrorItem, true);
+		}
+		else {
+			let transitState = insertValueInState(newState, componentStateErrorItem, false);
+
+			return insertValueInState(transitState, componentStateSuccessItem, true);
+		}
+
 	}
-
 
 
 
