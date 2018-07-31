@@ -9,7 +9,7 @@ export function nixCheckInput(checkerObject) {
 	const newState = checkerObject.componentState;		// Storing the current state in a variable
 	const componentStateErrorItem = (checkerObject.componentStateErrorItem) ? checkerObject.componentStateErrorItem : null;
 	const componentStateSuccessItem = checkerObject.componentStateSuccessItem;
-	let valid = checkerObject.validity;
+	const valid = checkerObject.validity;
 
 	
 	if(!componentStateErrorItem){
@@ -20,12 +20,12 @@ export function nixCheckInput(checkerObject) {
 	else {
 
 		if(valid){
-			let transitState = insertValueInState(newState, componentStateSuccessItem, false);	// We have to save a transitState above as this step only inserts the success value into the state. It does not remove the error value from the state. That is done by the step below.
+			var transitState = insertValueInState(newState, componentStateSuccessItem, false);	// We have to save a transitState above as this step only inserts the success value into the state. It does not remove the error value from the state. That is done by the step below.
 
 			return insertValueInState(transitState, componentStateErrorItem, true);
 		}
 		else {
-			let transitState = insertValueInState(newState, componentStateErrorItem, false);
+			var transitState = insertValueInState(newState, componentStateErrorItem, false);
 
 			return insertValueInState(transitState, componentStateSuccessItem, true);
 		}
@@ -36,13 +36,13 @@ export function nixCheckInput(checkerObject) {
 
 	function insertValueInState(stateToUpdate, stateItemToUpdate, removeValue){
 
-		let runLoop = true;
+		var runLoop = true;
 
-		let currentStateItem = stateToUpdate;		// currentStateItem is a moving reference to internal objects within the state object. We use this variable to go to every nested object within the state and finally update the error or success value.
+		var currentStateItem = stateToUpdate;		// currentStateItem is a moving reference to internal objects within the state object. We use this variable to go to every nested object within the state and finally update the error or success value.
 
-		let currentTempItem = stateItemToUpdate;		// currentTempItem is a moving reference to internal objects within the componentStateErrorItem or componentStateSuccessItem objects. We will use this variable to go to every nested object within the respective object and find the error or success value to be passed to the state (newState).
+		var currentTempItem = stateItemToUpdate;		// currentTempItem is a moving reference to internal objects within the componentStateErrorItem or componentStateSuccessItem objects. We will use this variable to go to every nested object within the respective object and find the error or success value to be passed to the state (newState).
 
-		let currentTempItemKey, currentNestedTempItem, currentNestedStateItem;
+		var currentTempItemKey, currentNestedTempItem, currentNestedStateItem;
 
 		while(runLoop){
 
